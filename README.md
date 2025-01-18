@@ -1,4 +1,4 @@
-# Jakarta EE Project
+# Jakarta Shop Project
 
 ## Overview
 This project is a web application built using Jakarta EE, featuring user authentication (login and registration) and a homepage displaying items. The project demonstrates core Jakarta EE functionalities, including servlets, JSPs, and integration with a database for persistent storage.
