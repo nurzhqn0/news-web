@@ -14,15 +14,12 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light w-full" >
         <div class="container-fluid w-75 mx-auto">
-            <!-- Brand Name -->
-            <a class="navbar-brand fw-bold" href="/">BITLAB SHOP</a>
+            <a class="navbar-brand fw-bold" href="/">Jakarta shop</a>
 
-            <!-- Toggle Button for Mobile View -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
@@ -46,7 +43,7 @@
 
 
 <section class="container text-center mt-5">
-    <h1>Welcome to BITLAB SHOP</h1>
+    <h1>Welcome to Jakarta shop</h1>
     <p class="text-muted">Electronic devices with high quality and service</p>
     <div class="row mt-4">
         <%
