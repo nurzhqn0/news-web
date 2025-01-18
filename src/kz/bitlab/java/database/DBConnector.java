@@ -1,8 +1,6 @@
 package kz.bitlab.java.database;
 
-import kz.bitlab.java.models.Category;
 import kz.bitlab.java.models.Item;
-import kz.bitlab.java.models.Task;
 import kz.bitlab.java.models.User;
 
 import java.sql.*;
@@ -231,8 +229,7 @@ public class DBConnector {
                 return isSuccessful;
             }
             checkStmt.close();
-
-            // Step 2: Insert new user if email does not exist
+            
             PreparedStatement insertStmt = connection.prepareStatement(
                     "INSERT INTO users_table (email, password, full_name) VALUES (?, ?, ?)");
 

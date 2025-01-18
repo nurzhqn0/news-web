@@ -1,4 +1,6 @@
-
+<%@ page import="kz.bitlab.java.models.Item" %>
+<%@ page import="java.util.List" %>
+<%@ page import="kz.bitlab.java.database.DBConnector" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -43,8 +45,37 @@
 
 
 
-<section class="container mx-5">
+<section class="container text-center mt-5">
+    <h1>Welcome to BITLAB SHOP</h1>
+    <p class="text-muted">Electronic devices with high quality and service</p>
+    <div class="row mt-4">
+        <%
+            List<Item> items = DBConnector.getAllItems();
 
+            if (items != null && !items.isEmpty()) {
+                for (Item item : items) {
+        %>
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title"><%= item.getName() %></h5>
+                    <h6 class="text-success fs-3">$<%= String.format("%.2f", item.getPrice()) %></h6>
+                    <p class="card-text"><%= item.getDescription() %></p>
+                    <button class="btn btn-success w-100">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <%
+            }
+        } else {
+        %>
+        <div class="col-12">
+            <p class="text-muted">No items available at the moment.</p>
+        </div>
+        <%
+            }
+        %>
+    </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
