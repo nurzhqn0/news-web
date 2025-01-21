@@ -6,17 +6,17 @@ public class News {
     private Long id;
     private String title;
     private String content;
-    private int languageId;
+    private String language;
     private Date postDate;
 
     public News() {
     }
 
-    public News(Long id, String title, String content, int languageId, Date postDate) {
+    public News(Long id, String title, String content, String language, Date postDate) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.languageId = languageId;
+        this.language = language;
         this.postDate = postDate;
     }
 
@@ -44,12 +44,12 @@ public class News {
         this.content = content;
     }
 
-    public int getLanguageId() {
-        return languageId;
+    public String getLanguage(){
+        return language;
     }
 
-    public void setLanguageId(int languageId) {
-        this.languageId = languageId;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
     public Date getPostDate() {
