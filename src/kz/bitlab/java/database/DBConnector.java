@@ -56,7 +56,7 @@ public class DBConnector {
 
     public static ArrayList<News> getNewsByType(String language){
         ArrayList<News> newsList = new ArrayList<>();
-        String query = "SELECT * FROM news WHERE language = ?";
+        String query = "SELECT * FROM news WHERE language = ?::language_enum";
 
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);

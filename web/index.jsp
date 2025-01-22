@@ -21,35 +21,67 @@
             max-width: 100%; /* Adjust width as needed */
 
         }
+
+        body {
+            overflow-y: scroll; /* Always show scrollbar */
+            scrollbar-gutter: stable; /* Prevent layout shift when scrollbar appears */
+        }
+
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light w-full" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary w-100" style="scrollbar-gutter: stable;">
         <div class="container-fluid w-75 mx-auto">
             <a class="navbar-brand fw-bold" href="/">Jakarta News</a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="#">Admin Panel</a>
+                        <a class="nav-link fw-semibold text-light" href="/admin">Admin Panel</a>
                     </li>
-                    <li class="nav-item">
-                        <button class="nav-link">РУС</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link">ENG</button>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold text-light" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Language
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                            <li>
+                                <form action="" method="get">
+                                    <input type="hidden" name="lang" value="ru">
+                                    <button type="submit" class="dropdown-item">РУС</button>
+                                </form>
+                            </li>
+                            <!-- Form for English Language -->
+                            <li>
+                                <form action="" method="get">
+                                    <input type="hidden" name="lang" value="en">
+                                    <button type="submit" class="dropdown-item">ENG</button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 </header>
 
 <section class="d-flex flex-column gap-4 w-75 my-4 mx-auto">
