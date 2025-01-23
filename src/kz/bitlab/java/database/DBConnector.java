@@ -3,6 +3,7 @@ package kz.bitlab.java.database;
 import kz.bitlab.java.models.News;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,11 +89,12 @@ public class DBConnector {
     }
 
     public static News getNewsById(Long id){
-        News news = new News();
+        News news = null;
         String query = "SELECT * FROM news WHERE id = ?";
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
@@ -101,8 +103,9 @@ public class DBConnector {
                 String content = resultSet.getString("content");
                 String language = resultSet.getString("language");
                 Timestamp postDate = resultSet.getTimestamp("post_date");
+                news = new News();
 
-                news.setId(id);
+                news.setId(ID);
                 news.setTitle(title);
                 news.setContent(content);
                 news.setLanguage(language);
@@ -149,13 +152,18 @@ public class DBConnector {
     }
 
     public static void updateNews(News news){
-        String query = "UPDATE news SET title = ?, content = ?, language = ? WHERE id = ?";
+        String query = "UPDATE news SET title = ?, content = ?, post_date = ?, language = ?::language_enum  WHERE id = ?";
 
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, news.getTitle());
             preparedStatement.setString(2, news.getContent());
             preparedStatement.setString(3, news.getLanguage());
+
+            LocalDateTime now = LocalDateTime.now();
+            Timestamp timestamp = Timestamp.valueOf(now);
+            preparedStatement.setTimestamp(4, timestamp);
+            preparedStatement.setLong(5, news.getId());
 
             preparedStatement.executeUpdate();
             preparedStatement.close();

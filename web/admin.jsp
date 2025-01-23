@@ -27,14 +27,25 @@
                             Language
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                            <li><a class="dropdown-item" href="#">РУС</a></li>
-                            <li><a class="dropdown-item" href="#">ENG</a></li>
+                            <li>
+                                <form action="" method="get">
+                                    <input type="hidden" name="lang" value="ru">
+                                    <button type="submit" class="dropdown-item">РУС</button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="" method="get">
+                                    <input type="hidden" name="lang" value="en">
+                                    <button type="submit" class="dropdown-item">ENG</button>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 </header>
 
 <section class="container mx-5">
@@ -101,7 +112,7 @@
 
                 <% String language = news.getLanguage().equals("en") ? "English" : "Русский"; %>
                 <td><%= language %></td>
-                <td><a href="/news/<%= news.getId() %>" class="btn btn-primary">Детали</a></td>
+                <td><a href="/admin/news/<%= news.getId() %>" class="btn btn-primary">Детали</a></td>
             </tr>
             <%
                 }

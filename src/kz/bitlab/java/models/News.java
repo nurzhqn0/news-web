@@ -1,5 +1,6 @@
 package kz.bitlab.java.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class News {
@@ -7,12 +8,12 @@ public class News {
     private String title;
     private String content;
     private String language;
-    private Date postDate;
+    private Timestamp postDate;
 
     public News() {
     }
 
-    public News(Long id, String title, String content, String language, Date postDate) {
+    public News(Long id, String title, String content, String language, Timestamp postDate) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -52,11 +53,11 @@ public class News {
         this.language = language;
     }
 
-    public Date getPostDate() {
+    public Timestamp getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(Timestamp postDate) {
         this.postDate = postDate;
     }
 }

@@ -4,12 +4,13 @@
 <%@ page import="kz.bitlab.java.database.DBConnector" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Objects" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Task Manager</title>
+    <title>News Manager</title>
     <style>
         .truncate-5-lines {
             display: -webkit-box;
@@ -82,30 +83,72 @@
     </nav>
 </header>
 
-<section class="d-flex flex-column gap-4 w-75 my-4 mx-auto">
-    <%
-        ArrayList<News> newsList = (ArrayList<News>) request.getAttribute("newsList");
-        for (News news : newsList) {
-    %>
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title fw-semibold"><%=news.getTitle()%></h2>
-                <p class="card-text mt-3 truncate-5-lines">
-                    <%=news.getContent()%>
-                </p>
-                <%
-                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd.MM.yyyy");
-                %>
-                <p class="text-secondary mt-4"><strong>Posted at <%=outputFormat.format(news.getPostDate())%></strong></p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <%
+                News news = (News) request.getAttribute("news");
+                if (Objects.isNull(news)) {
+            %>
+
+            <div class="alert alert-danger" role="alert">
+                News not found.
             </div>
+            <%
+            } else {
+            %>
+            <form action="/admin/news/<%= news.getId() %>" method="post">
+                <div class="mb-3">
+                    <label for="newsTitle" class="form-label">Название новости</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="newsTitle"
+                            name="newsTitle"
+                            value="<%= news.getTitle() %>"
+                            required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="newsContent" class="form-label">Описание новости</label>
+                    <textarea
+                            class="form-control"
+                            id="newsContent"
+                            name="newsContent"
+                            rows="3"
+                            required><%= news.getContent() %></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="newsLanguage" class="form-label">Язык</label>
+                    <div class="input-group w-50">
+                        <select class="form-select" id="newsLanguage" name="newsLanguage">
+                            <option value="en" <%= news.getLanguage().equals("en") ? "selected" : "" %>>English</option>
+                            <option value="ru" <%= news.getLanguage().equals("ru") ? "selected" : "" %>>Русский</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+
+            <div class="d-flex align-items-center gap-3">
+            <a href="/admin" class="btn btn-secondary">Back to News</a>
+            <form  action="/admin/news/<%= news.getId() %>" method="post" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </div>
+
+
+            <%
+                }
+            %>
+
         </div>
     </div>
-    <%
-        }
-    %>
-
-</section>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
