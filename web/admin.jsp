@@ -1,4 +1,5 @@
-
+<%@ page import="kz.bitlab.java.models.News" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -35,6 +36,80 @@
         </div>
     </nav>
 </header>
+
+<section class="container mx-5">
+    <button class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+        + Добавить новости
+    </button>
+
+    <div class="modal fade w-1/2" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Добавить новости</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="">
+                        <div class="mb-3">
+                            <label for="newsTitle" class="form-label">Название новости</label>
+                            <input type="text" class="form-control" id="newsTitle" name="newsTitle" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="newsContent" class="form-label">Описание новости</label>
+                            <textarea class="form-control" id="newsContent" name="newsContent" rows="3" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="newsLanguage" class="form-label">Язык</label>
+                            <div class="input-group w-50">
+                                <select class="form-select" id="newsLanguage" name="newsLanguage">
+                                    <option value="en" selected>English</option>
+                                    <option value="ru">Русский</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Заголовок</th>
+                <th>Дата Публикации</th>
+                <th>Язык</th>
+                <th>Детали</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                ArrayList<News> newsList = (ArrayList<News>) request.getAttribute("newsList");
+                for (News news : newsList) {
+            %>
+            <tr >
+                <td scope="row"><%= news.getId() %></td>
+                <td><%= news.getTitle() %></td>
+                <td><%= news.getPostDate() %></td>
+
+                <% String language = news.getLanguage().equals("en") ? "English" : "Русский"; %>
+                <td><%= language %></td>
+                <td><a href="/news/<%= news.getId() %>" class="btn btn-primary">Детали</a></td>
+            </tr>
+            <%
+                }
+            %>
+            </tbody>
+        </table>
+    </div>
+</section>
 
 
 

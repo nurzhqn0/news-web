@@ -68,7 +68,6 @@
                                     <button type="submit" class="dropdown-item">РУС</button>
                                 </form>
                             </li>
-                            <!-- Form for English Language -->
                             <li>
                                 <form action="" method="get">
                                     <input type="hidden" name="lang" value="en">
