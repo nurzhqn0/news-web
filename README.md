@@ -1,4 +1,4 @@
-# Jakarta News Project
+# News Website
 
 ## Contributions
 Contributions are welcome! Please fork the repository and submit a pull request.
