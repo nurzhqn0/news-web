@@ -9,7 +9,7 @@ public class DBConnector {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/jakarta_news",
+                    "jdbc:postgresql://localhost:5432/news_web",
                     "postgres",
                     "2925"
             );
