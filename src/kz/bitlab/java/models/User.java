@@ -5,16 +5,16 @@ public class User {
     private String email;
     private String password;
     private String fullName;
-    private int role_id;
+    private int roleId;
 
     public User() {}
 
-    public User(Long id, String email, String password, String fullName, int role_id) {
+    public User(Long id, String email, String password, String fullName, int roleId) {
         this.id = id;
         this.email = email;
         this.password = password;
         this.fullName = fullName;
-        this.role_id = role_id;
+        this.roleId = roleId;
     }
 
     public Long getId() {
@@ -49,11 +49,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public int getRole_id() {
-        return role_id;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRoleId(int role_id) {
+        this.roleId = role_id;
     }
 }
