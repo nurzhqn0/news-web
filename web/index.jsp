@@ -39,7 +39,7 @@
                 </form>
 
                 <!-- Login Button -->
-                <a href="login.jsp"
+                <a href="/login"
                    class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 px-4 py-2 rounded-lg transition">
                     Login
                 </a>
