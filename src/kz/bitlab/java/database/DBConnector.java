@@ -152,7 +152,7 @@ public class DBConnector {
 
     public static User login(String email, String password){
         User user = null;
-        String query = "SELECT * FROM users WHERE email = ?, password = ?";
+        String query = "SELECT * FROM users WHERE email = ? AND password = ?";
 
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(query);

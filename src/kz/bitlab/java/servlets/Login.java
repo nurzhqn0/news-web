@@ -27,7 +27,8 @@ public class Login extends HttpServlet {
 
         if(!Objects.isNull(user)) {
             req.getSession().setAttribute("email", email);
-            req.getSession().setAttribute("password", password);
+            req.getSession().setAttribute("role", user.getRoleId());
+
 
             if(user.getRoleId() == 2){
                 resp.sendRedirect("/dashboard");

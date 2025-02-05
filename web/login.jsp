@@ -1,4 +1,19 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%
+    HttpSession sessionObj = request.getSession(false);
+    String userEmail = (sessionObj != null) ? (String) sessionObj.getAttribute("email") : null;
+    Integer role = (sessionObj != null) ? (Integer) sessionObj.getAttribute("role") : null;
+
+    if (userEmail != null) {
+        if (role != null) {
+            if (role == 1) {
+                response.sendRedirect("/admin");
+            } else if (role == 2) {
+                response.sendRedirect("/dashboard");
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
