@@ -150,6 +150,31 @@ public class DBConnector {
         return true;
     }
 
+    public static User login(String email, String password){
+        User user = null;
+        String query = "SELECT * FROM users WHERE email = ?, password = ?";
+
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setFullName(resultSet.getString("full_name"));
+                user.setPassword(resultSet.getString("password"));
+                user.setRoleId(resultSet.getInt("role_id"));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
 
     public ArrayList<NewsCategory> getAllNewsCategories(){
         ArrayList<NewsCategory> newsCategoryList = new ArrayList<>();

@@ -17,7 +17,7 @@ public class Register extends HttpServlet {
         String fullName = req.getParameter("fullName");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User user = new User(null, email, password, fullName, 1);
+        User user = new User(null, email, password, fullName, 2);
 
         boolean isSuccess = DBConnector.addUser(user);
         resp.sendRedirect("/");
